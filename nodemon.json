@@ -1,6 +1,6 @@
 {
-  "watch": ["dist"],
+  "watch": ["build"],
   "ext": "js",
-  "ignore": ["dist/**/*.spec.js"],
-  "exec": "node dist/index.js"
+  "ignore": ["build/**/*.spec.js"],
+  "exec": "node build/index.js"
 }

@@ -1,6 +1,11 @@
 import Joi from 'joi';
+import { IProduct } from './../models/interfaces/product.interface';
+import { ITransaction } from './../models/interfaces/transaction.interface';
+import { IUser } from './../models/interfaces/user.interface';
 
-export const validateProduct = (productData: any) => {
+export const validateProduct = (
+  productData: Partial<Omit<IProduct, '_id' | 'createdAt'>>,
+) => {
   const schema = Joi.object({
     title: Joi.string().required(),
     description: Joi.string().required(),
@@ -14,7 +19,9 @@ export const validateProduct = (productData: any) => {
   return schema.validate(productData);
 };
 
-export const validateTransaction = (transactionData: any) => {
+export const validateTransaction = (
+  transactionData: Partial<Omit<ITransaction, '_id' | 'transactionDate'>>,
+) => {
   const schema = Joi.object({
     productId: Joi.string().required(),
     sellerId: Joi.string().required(),
@@ -27,7 +34,9 @@ export const validateTransaction = (transactionData: any) => {
   return schema.validate(transactionData);
 };
 
-export const validateUser = (userData: any) => {
+export const validateUser = (
+  userData: Partial<Omit<IUser, '_id' | 'createdAt'>>,
+) => {
   const schema = Joi.object({
     username: Joi.string().required(),
     email: Joi.string().email().required(),
@@ -35,7 +44,7 @@ export const validateUser = (userData: any) => {
       .min(8)
       .regex(/(?=.*\d)(?=.*[!@#$%^&*])/)
       .message(
-        'Password must be at least 8 characters long, with at least one number and one special character'
+        'Password must be at least 8 characters long, with at least one number and one special character',
       )
       .required(),
     role: Joi.string().valid('buyer', 'seller', 'admin').required(),

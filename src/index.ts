@@ -1,5 +1,5 @@
-import express, { Request, Response, NextFunction } from 'express';
-import cors from 'cors'
+import express, { Request, Response } from 'express';
+import cors from 'cors';
 import morgan from 'morgan';
 import logger from './utils/logger';
 import errorHandler from './middleware/errorHandler';
@@ -12,14 +12,14 @@ import userRouter from './routes/userRoutes';
 dotenv.config();
 
 const app = express();
-app.use(cors())
+app.use(cors());
 // Morgan setup for logging HTTP requests
 app.use(
   morgan('tiny', {
     stream: {
       write: (message: string) => logger.info(message.trim()),
     },
-  })
+  }),
 );
 
 // Body parser middleware
@@ -38,9 +38,9 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 // Centralized error handling
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+app.use((err: Error, req: Request, res: Response) => {
   logger.error(err.message);
-  errorHandler(err, req, res, next);
+  errorHandler(err, req, res);
 });
 
 const port = process.env.PORT || 3000;
