@@ -40,7 +40,13 @@ Follow these steps to set up your development environment:
    ACCESS_TOKEN_SECRET=jwt_secret_here
    ```
 
-4. **Start the development server:**
+4. **Install dependencies:**
+
+   ```bash
+   npm install
+   ```
+
+5. **Start the development server:**
 
    ```bash
    npm start
