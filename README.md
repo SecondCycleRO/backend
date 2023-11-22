@@ -1,6 +1,6 @@
 # Backend
 
-This repository houses the backend service for the SecondCycle platform, which is responsible for all server-side operations, database interactions, and API management.
+This repository contains the backend service for the SecondCycle platform, which is responsible for all server-side operations, database interactions, and API management.
 
 ## Getting Started
 
@@ -85,4 +85,4 @@ Here is a list of available API endpoints.
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct.
+Please read [CONTRIBUTING.md](https://github.com/SecondCycleRO/.github/blob/master/CONTRIBUTING.MD) for details on our code of conduct.
