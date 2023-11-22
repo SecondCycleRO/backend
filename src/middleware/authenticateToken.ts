@@ -6,7 +6,11 @@ import logger from '../utils/logger';
 
 interface TokenPayload {
   userId: string;
-  role?: string;
+  username: string;
+  email: string;
+  role: string;
+  iat: number;
+  exp: number;
 }
 
 export const authenticateToken = (role: string = '') => {
