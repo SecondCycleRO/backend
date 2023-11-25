@@ -4,6 +4,15 @@ import User from '../models/user.model';
 import createHttpError from 'http-errors';
 import logger from '../utils/logger';
 
+interface TokenPayload {
+  userId: string;
+  username: string;
+  email: string;
+  role: string;
+  iat: number;
+  exp: number;
+}
+
 export const authenticateToken = (role: string = '') => {
   return async (req: Request, res: Response, next: NextFunction) => {
     const authHeader = req.headers['authorization'];
@@ -16,8 +25,8 @@ export const authenticateToken = (role: string = '') => {
     try {
       const decoded = jwt.verify(
         token,
-        process.env.ACCESS_TOKEN_SECRET as string
-      ) as any;
+        process.env.ACCESS_TOKEN_SECRET as string,
+      ) as TokenPayload;
       const user = await User.findById(decoded.userId);
 
       if (!user) {

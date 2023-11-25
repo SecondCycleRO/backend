@@ -1,7 +1,6 @@
 import Transaction from '../models/transaction.model';
 import { Request, Response } from 'express';
 import { validateTransaction } from '../utils/validationUtils';
-import createHttpError from 'http-errors';
 import logger from '../utils/logger';
 
 export const getAllTransactions = async (req: Request, res: Response) => {
@@ -25,7 +24,7 @@ export const getTransactionById = async (req: Request, res: Response) => {
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Unknown error';
     logger.error(
-      `Error fetching transaction by ID ${req.params.id}: ${message}`
+      `Error fetching transaction by ID ${req.params.id}: ${message}`,
     );
     res.status(500).send('Internal Server Error');
   }
@@ -54,7 +53,7 @@ export const updateTransaction = async (req: Request, res: Response) => {
     const transaction = await Transaction.findByIdAndUpdate(
       req.params.id,
       req.body,
-      { new: true }
+      { new: true },
     );
     if (!transaction) {
       return res.status(404).send('Transaction not found');
